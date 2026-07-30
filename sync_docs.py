@@ -13,43 +13,93 @@ pointing at the English page, so a half-translated repo never breaks the build.
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import shutil
+from collections.abc import Mapping
 from pathlib import Path
 
 HUB = Path(__file__).resolve().parent
 OUT_EN = HUB / "docs" / "en"
 OUT_ZH = HUB / "docs" / "zh"
 
-# project -> (local repo path, extra root-level docs beyond README + docs/*.md)
-LOCAL_REPOS: dict[str, tuple[Path, list[str]]] = {
-    "MiniKafka": (Path("~/MiniKafka"), []),
-    "MiniRedis": (Path("~/MiniRedis-workspace/MiniRedis"), []),
-    "MiniPostgres": (
-        Path("~/MiniPostgres-workspace/MiniPostgres"),
-        ["ARCHITECTURE.md", "DIFFERENCES_FROM_POSTGRESQL.md", "SCOPE.md", "LABS.md", "BEHAVIORAL_CONTRACT.md", "BEHAVIOR_MATRIX.md"],
-    ),
-    "MiniQdrant": (
-        Path("~/MiniQdrant-workspace/MiniQdrant"),
-        ["ARCHITECTURE.md", "DIFFERENCES_FROM_QDRANT.md"],
-    ),
-    "MiniLucene": (Path("~/MiniLucene-workspace/MiniLucene"), []),
-    "MiniDist": (Path("~/MiniDist-workspace/MiniDist"), []),
-    "MiniS3": (Path("~/MiniS3-workspace/MiniS3"), []),
-    "MiniMongoDB": (Path("~/MiniMongoDB-workspace/MiniMongoDB"), []),
+# project -> extra root-level docs beyond README + docs/*.md
+PROJECT_EXTRAS: dict[str, list[str]] = {
+    "MiniKafka": [],
+    "MiniRedis": [],
+    "MiniPostgres": [
+        "ARCHITECTURE.md",
+        "DIFFERENCES_FROM_POSTGRESQL.md",
+        "SCOPE.md",
+        "LABS.md",
+        "BEHAVIORAL_CONTRACT.md",
+        "BEHAVIOR_MATRIX.md",
+    ],
+    "MiniQdrant": ["ARCHITECTURE.md", "DIFFERENCES_FROM_QDRANT.md"],
+    "MiniLucene": [],
+    "MiniDist": [],
+    "MiniS3": [],
+    "MiniMongoDB": [],
 }
 
-# In CI every repository is checked out below one shared parent. Locally, keep
-# using the verified absolute paths above.
-if "SIM_REPOS_ROOT" in os.environ:
-    repos_root = Path(os.environ["SIM_REPOS_ROOT"])
-    REPOS = {
-        name: (repos_root / name, extra_roots)
-        for name, (_, extra_roots) in LOCAL_REPOS.items()
+
+def _resolve_repos(
+    *,
+    environ: Mapping[str, str] = os.environ,
+    config_path: Path = HUB / "repos.local.json",
+) -> dict[str, tuple[Path, list[str]]]:
+    """Resolve source repositories from CI root or an ignored local config."""
+    repos_root = environ.get("SIM_REPOS_ROOT")
+    if repos_root:
+        root = Path(repos_root)
+        return {
+            name: (root / name, extra_roots)
+            for name, extra_roots in PROJECT_EXTRAS.items()
+        }
+
+    if not config_path.exists():
+        raise RuntimeError(
+            "Repository paths are not configured. Set SIM_REPOS_ROOT to a "
+            "shared parent directory, or create repos.local.json with one "
+            "absolute path per project."
+        )
+
+    try:
+        configured = json.loads(config_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError(
+            f"Could not read repository paths from {config_path}: {exc}"
+        ) from exc
+
+    if not isinstance(configured, dict):
+        raise RuntimeError(
+            f"{config_path} must contain a JSON object of project paths."
+        )
+
+    missing = sorted(set(PROJECT_EXTRAS) - set(configured))
+    if missing:
+        raise RuntimeError(
+            f"{config_path} is missing project paths: {', '.join(missing)}"
+        )
+
+    invalid = sorted(
+        name
+        for name in PROJECT_EXTRAS
+        if not isinstance(configured[name], str) or not configured[name]
+    )
+    if invalid:
+        raise RuntimeError(
+            f"{config_path} has invalid project paths: {', '.join(invalid)}"
+        )
+
+    return {
+        name: (Path(configured[name]), extra_roots)
+        for name, extra_roots in PROJECT_EXTRAS.items()
     }
-else:
-    REPOS = LOCAL_REPOS
+
+
+REPOS = _resolve_repos()
 
 SKIP_DIRS = {"superpowers", "zh"}  # internal build docs / the zh mirror itself
 

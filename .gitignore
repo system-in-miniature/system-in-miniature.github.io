@@ -3,3 +3,4 @@ __pycache__/
 site/
 docs/en/
 docs/zh/
+repos.local.json

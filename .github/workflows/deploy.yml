@@ -1,7 +1,11 @@
 name: Deploy documentation
 
 on:
+  # This repository is the organization-root Pages site:
+  # system-in-miniature.github.io. Only main may deploy on push.
   push:
+    branches:
+      - main
   repository_dispatch:
     types:
       - docs-update
