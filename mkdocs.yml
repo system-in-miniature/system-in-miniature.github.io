@@ -1,4 +1,4 @@
-site_name: System-in-Miniature
+site_name: System in Miniature
 site_description: "Teaching kernels of mainstream infrastructure systems, in Python. 主流基础设施系统的 Python 教学内核。"
 docs_dir: docs
 site_dir: site
@@ -27,11 +27,115 @@ theme:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - tables
   - toc:
       permalink: true
   - pymdownx.highlight
   - pymdownx.superfences
+
+nav:
+  - Home / 首页: index.md
+  - Learning Paths / 学习路线: https://system-in-miniature.github.io/#learning-paths
+  - Document Library / 文档库:
+      - English:
+          - MiniLucene:
+              - Overview: en/MiniLucene/index.md
+              - Behavior matrix: en/MiniLucene/behavior-matrix.md
+              - Final acceptance: en/MiniLucene/final-acceptance.md
+              - Hands-on CLI experiment: en/MiniLucene/labs-guide.md
+              - Lucene mapping: en/MiniLucene/lucene-mapping.md
+              - Phase 1 — Retrieval kernel: en/MiniLucene/phase1-retrieval-kernel.md
+              - Phase 2 — Storage & commit: en/MiniLucene/phase2-storage-commit.md
+              - Phase 3 — NRT & mutation: en/MiniLucene/phase3-nrt-mutation.md
+              - Segment format: en/MiniLucene/segment-format.md
+          - MiniQdrant:
+              - Overview: en/MiniQdrant/index.md
+              - Architecture: en/MiniQdrant/ARCHITECTURE.md
+              - Differences from Qdrant: en/MiniQdrant/DIFFERENCES_FROM_QDRANT.md
+              - Behavior matrix: en/MiniQdrant/behavior-matrix.md
+              - Qdrant mapping: en/MiniQdrant/qdrant-mapping.md
+              - Storage format: en/MiniQdrant/storage-format.md
+          - MiniPostgres:
+              - Overview: en/MiniPostgres/index.md
+              - Architecture: en/MiniPostgres/ARCHITECTURE.md
+              - Behavioral contract: en/MiniPostgres/BEHAVIORAL_CONTRACT.md
+              - Behavior matrix: en/MiniPostgres/BEHAVIOR_MATRIX.md
+              - Differences from PostgreSQL: en/MiniPostgres/DIFFERENCES_FROM_POSTGRESQL.md
+              - Labs: en/MiniPostgres/LABS.md
+              - Scope: en/MiniPostgres/SCOPE.md
+              - Tour: en/MiniPostgres/tour.md
+          - MiniMongoDB:
+              - Overview: en/MiniMongoDB/index.md
+              - Differences: en/MiniMongoDB/DIFFERENCES.md
+              - Mapping: en/MiniMongoDB/mapping.md
+          - MiniS3:
+              - Overview: en/MiniS3/index.md
+              - Differences: en/MiniS3/DIFFERENCES.md
+              - Mapping: en/MiniS3/mapping.md
+          - MiniRedis:
+              - Overview: en/MiniRedis/index.md
+              - Architecture: en/MiniRedis/architecture.md
+              - Behavior matrix: en/MiniRedis/behavior-matrix.md
+          - MiniKafka:
+              - Overview: en/MiniKafka/index.md
+              - Behavior matrix: en/MiniKafka/behavior-matrix.md
+              - Kafka mapping: en/MiniKafka/kafka-mapping.md
+          - MiniDist:
+              - Overview: en/MiniDist/index.md
+              - Experiments: en/MiniDist/experiments.md
+              - Hands-on protocol experiment: en/MiniDist/labs-guide.md
+              - Mapping: en/MiniDist/mapping.md
+      - 中文:
+          - MiniLucene:
+              - 概览: zh/MiniLucene/index.md
+              - 行为矩阵: zh/MiniLucene/behavior-matrix.md
+              - 最终验收: zh/MiniLucene/final-acceptance.md
+              - CLI 动手实验: zh/MiniLucene/labs-guide.md
+              - Lucene 映射: zh/MiniLucene/lucene-mapping.md
+              - 第一阶段 — 检索内核: zh/MiniLucene/phase1-retrieval-kernel.md
+              - 第二阶段 — 存储与提交: zh/MiniLucene/phase2-storage-commit.md
+              - 第三阶段 — NRT 与变更: zh/MiniLucene/phase3-nrt-mutation.md
+              - 段格式: zh/MiniLucene/segment-format.md
+          - MiniQdrant:
+              - 概览: zh/MiniQdrant/index.md
+              - 架构: zh/MiniQdrant/ARCHITECTURE.md
+              - 与 Qdrant 的差异: zh/MiniQdrant/DIFFERENCES_FROM_QDRANT.md
+              - 行为矩阵: zh/MiniQdrant/behavior-matrix.md
+              - Qdrant 映射: zh/MiniQdrant/qdrant-mapping.md
+              - 存储格式: zh/MiniQdrant/storage-format.md
+          - MiniPostgres:
+              - 概览: zh/MiniPostgres/index.md
+              - 架构: zh/MiniPostgres/ARCHITECTURE.md
+              - 行为契约: zh/MiniPostgres/BEHAVIORAL_CONTRACT.md
+              - 行为矩阵: zh/MiniPostgres/BEHAVIOR_MATRIX.md
+              - 与 PostgreSQL 的差异: zh/MiniPostgres/DIFFERENCES_FROM_POSTGRESQL.md
+              - 实验: zh/MiniPostgres/LABS.md
+              - 范围: zh/MiniPostgres/SCOPE.md
+              - 导览: zh/MiniPostgres/tour.md
+          - MiniMongoDB:
+              - 概览: zh/MiniMongoDB/index.md
+              - 差异: zh/MiniMongoDB/DIFFERENCES.md
+              - 映射: zh/MiniMongoDB/mapping.md
+          - MiniS3:
+              - 概览: zh/MiniS3/index.md
+              - 差异: zh/MiniS3/DIFFERENCES.md
+              - 映射: zh/MiniS3/mapping.md
+          - MiniRedis:
+              - 概览: zh/MiniRedis/index.md
+              - 架构: zh/MiniRedis/architecture.md
+              - 行为矩阵: zh/MiniRedis/behavior-matrix.md
+          - MiniKafka:
+              - 概览: zh/MiniKafka/index.md
+              - 行为矩阵: zh/MiniKafka/behavior-matrix.md
+              - Kafka 映射: zh/MiniKafka/kafka-mapping.md
+          - MiniDist:
+              - 概览: zh/MiniDist/index.md
+              - 实验: zh/MiniDist/experiments.md
+              - 协议动手实验: zh/MiniDist/labs-guide.md
+              - 映射: zh/MiniDist/mapping.md
+  - About / 关于: https://system-in-miniature.github.io/#about
 
 plugins:
   - search:

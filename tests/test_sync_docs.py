@@ -59,5 +59,31 @@ class RepoPathConfigurationTest(unittest.TestCase):
                 sync_docs._resolve_repos(environ={}, config_path=config_path)
 
 
+class SyncedMarkdownLinkTest(unittest.TestCase):
+    def test_internal_superpowers_links_point_back_to_source_repository(self) -> None:
+        import sync_docs
+
+        source = (
+            "[design](docs/superpowers/specs/design.md) and "
+            "[plan](./docs/superpowers/plans/plan.md), "
+            "[archive](superpowers/README.md), and "
+            "[translated archive](../superpowers/README.md)"
+        )
+
+        cleaned = sync_docs._clean(source, project="MiniLucene")
+
+        self.assertEqual(
+            cleaned,
+            "[design](https://github.com/system-in-miniature/MiniLucene/"
+            "blob/main/docs/superpowers/specs/design.md) and "
+            "[plan](https://github.com/system-in-miniature/MiniLucene/"
+            "blob/main/docs/superpowers/plans/plan.md), "
+            "[archive](https://github.com/system-in-miniature/MiniLucene/"
+            "blob/main/docs/superpowers/README.md), and "
+            "[translated archive](https://github.com/system-in-miniature/"
+            "MiniLucene/blob/main/docs/superpowers/README.md)",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

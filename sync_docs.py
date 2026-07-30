@@ -106,16 +106,24 @@ SKIP_DIRS = {"superpowers", "zh"}  # internal build docs / the zh mirror itself
 LANG_LINE = re.compile(r"^>\s*\*\*Language\*\*.*$", re.MULTILINE)
 
 
-def _clean(text: str) -> str:
+def _clean(text: str, *, project: str) -> str:
     # Language-switch lines point at repo-relative paths that don't exist in
     # the hub tree; the site has its own language toggle via nav.
-    return LANG_LINE.sub("", text)
+    text = LANG_LINE.sub("", text)
+    # Internal planning artifacts are intentionally excluded from the public
+    # hub. Keep README references useful without creating broken local links.
+    return re.sub(
+        r"\]\((?:(?:\./)?docs/|(?:\.\./)*|\./)?superpowers/([^)]+)\)",
+        rf"](https://github.com/system-in-miniature/{project}/"
+        rf"blob/main/docs/superpowers/\1)",
+        text,
+    )
 
 
 def _copy(src: Path, dst: Path, *, is_readme: bool = False, lang: str = "en") -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
-    text = _clean(src.read_text(encoding="utf-8"))
     proj = dst.parent.name
+    text = _clean(src.read_text(encoding="utf-8"), project=proj)
     # In the hub tree every page sits flat inside <lang>/<project>/, so
     # repo-relative links into docs/ or docs/zh/ lose those prefixes and
     # README.md itself becomes index.md.
