@@ -22,8 +22,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Beginner 入门` `Status 状态 · Polished; labs pending 实现成熟；实验待补`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniLucene/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniLucene){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-lucene/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-lucene){ .md-button }
 
 -   🧭 **MiniQdrant**
 
@@ -34,8 +34,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Intermediate 中级` `Status 状态 · Polished; lab paths tracked 实现成熟；实验路线跟踪中`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniQdrant/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniQdrant){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-qdrant/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-qdrant){ .md-button }
 
 -   🐘 **MiniPostgres**
 
@@ -46,8 +46,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Advanced 进阶` `Status 状态 · Polished; docs expanding 实现成熟；文档扩充中`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniPostgres/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniPostgres){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-postgres/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-postgres){ .md-button }
 
 -   🍃 **MiniMongoDB**
 
@@ -58,8 +58,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Intermediate 中级` `Status 状态 · M1; milestone docs available M1；里程碑文档可用`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniMongoDB/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniMongoDB){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-mongodb/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-mongodb){ .md-button }
 
 -   🪣 **MiniS3**
 
@@ -70,8 +70,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Beginner 入门` `Status 状态 · M1; milestone docs available M1；里程碑文档可用`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniS3/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniS3){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-s3/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-s3){ .md-button }
 
 -   ⚡ **MiniRedis**
 
@@ -82,8 +82,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Intermediate 中级` `Status 状态 · Polished; docs expanding 实现成熟；文档扩充中`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniRedis/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniRedis){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-redis/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-redis){ .md-button }
 
 -   📜 **MiniKafka**
 
@@ -94,8 +94,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Advanced 进阶` `Status 状态 · Polished; docs expanding 实现成熟；文档扩充中`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniKafka/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniKafka){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-kafka/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-kafka){ .md-button }
 
 -   🌐 **MiniDist**
 
@@ -106,8 +106,8 @@ one production mechanism inspectable while stating simplifications explicitly. /
 
     `Difficulty 难度 · Advanced 进阶` `Status 状态 · M2; milestone docs available M2；里程碑文档可用`
 
-    [教程 Tutorial](https://system-in-miniature.github.io/MiniDist/){ .md-button .md-button--primary }
-    [仓库 Repo](https://github.com/system-in-miniature/MiniDist){ .md-button }
+    [教程 Tutorial](https://system-in-miniature.github.io/mini-dist/){ .md-button .md-button--primary }
+    [仓库 Repo](https://github.com/system-in-miniature/mini-dist){ .md-button }
 
 </div>
 
