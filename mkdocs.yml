@@ -1,0 +1,40 @@
+site_name: System-in-Miniature
+site_description: "Teaching kernels of mainstream infrastructure systems, in Python. 主流基础设施系统的 Python 教学内核。"
+docs_dir: docs
+site_dir: site
+use_directory_urls: false
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+plugins:
+  - search:
+      lang:
+        - en
+        - zh
