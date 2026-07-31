@@ -19,11 +19,12 @@ code are outside this change.
 ## Design
 
 The organization homepage will wrap its two introductory links in one
-`home-actions` container. A small extra stylesheet will render that container
-as two equal grid columns when space permits and one equal-width column on
-narrow viewports. The links will fill their tracks, center their labels, and
-stretch to the same height in a row. This replaces the theme's intrinsic
-`inline-block` sizing without changing Material's global button component.
+`home-actions` container. A small extra stylesheet will render the paragraph
+MkDocs generates inside that container as two equal grid columns when space
+permits and one equal-width column on narrow viewports. The links will fill
+their tracks, center their labels, and stretch to the same height in a row.
+This replaces the theme's intrinsic `inline-block` sizing without changing
+Material's global button component.
 
 Each project Home page will preserve its existing English structure and
 technical details. Every title, section heading, explanatory paragraph, list

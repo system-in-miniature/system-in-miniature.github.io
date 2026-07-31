@@ -40,7 +40,7 @@ Replace the two standalone links with this Markdown-in-HTML block:
 Create `docs/stylesheets/extra.css` with:
 
 ```css
-.home-actions {
+.home-actions > p {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-auto-rows: 1fr;
@@ -56,7 +56,7 @@ Create `docs/stylesheets/extra.css` with:
 }
 
 @media screen and (max-width: 44.984375em) {
-  .home-actions {
+  .home-actions > p {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -107,7 +107,8 @@ class DocumentationHomepageTest(unittest.TestCase):
 
         self.assertTrue(headings)
         self.assertTrue(all(" / " in heading for heading in headings))
-        self.assertGreaterEqual(len(re.findall(r"[\u4e00-\u9fff]", homepage)), 180)
+        self.assertIn("[Chinese edition / 中文版]", homepage)
+        self.assertGreaterEqual(len(re.findall(r"[\u4e00-\u9fff]", homepage)), 120)
 
 
 if __name__ == "__main__":

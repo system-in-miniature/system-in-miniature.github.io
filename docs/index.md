@@ -6,8 +6,12 @@ From search and storage to logs and distributed protocols, each project makes
 one production mechanism inspectable while stating simplifications explicitly. /
 从搜索、存储到日志与分布式协议，每个项目都让一组生产机制变得可观察，并明确声明教学简化。
 
+<div class="home-actions" markdown>
+
 [Choose a learning path / 选择学习路线](#learning-paths){ .md-button .md-button--primary }
 [Browse the document library / 浏览文档库](#document-library){ .md-button }
+
+</div>
 
 ## Projects / 项目
 
