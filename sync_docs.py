@@ -104,6 +104,13 @@ REPOS = _resolve_repos()
 SKIP_DIRS = {"superpowers", "zh"}  # internal build docs / the zh mirror itself
 
 LANG_LINE = re.compile(r"^>\s*\*\*Language\*\*.*$", re.MULTILINE)
+INLINE_LINK = re.compile(
+    r"(?P<prefix>\]\()(?P<target><?[^)\s>]+>?)(?P<suffix>(?:\s+[\"'][^\"']*[\"'])?\))"
+)
+REFERENCE_LINK = re.compile(
+    r"^(?P<prefix>\s*\[[^\]]+\]:\s*)(?P<target><?\S+>?)",
+    re.MULTILINE,
+)
 
 
 def _clean(text: str, *, project: str) -> str:
@@ -120,24 +127,51 @@ def _clean(text: str, *, project: str) -> str:
     )
 
 
-def _copy(src: Path, dst: Path, *, is_readme: bool = False, lang: str = "en") -> None:
+def _rewrite_local_links(
+    text: str,
+    *,
+    src: Path,
+    dst: Path,
+    source_map: Mapping[Path, Path],
+) -> str:
+    """Translate repo-relative Markdown links into hub-relative links."""
+
+    def replace(match: re.Match[str]) -> str:
+        target = match.group("target")
+        wrapped = target.startswith("<") and target.endswith(">")
+        raw_target = target[1:-1] if wrapped else target
+        path_part, fragment_marker, fragment = raw_target.partition("#")
+        if not path_part.lower().endswith(".md"):
+            return match.group(0)
+
+        source_target = (src.parent / path_part).resolve()
+        hub_target = source_map.get(source_target)
+        if hub_target is None:
+            return match.group(0)
+
+        relative = Path(os.path.relpath(hub_target, dst.parent)).as_posix()
+        rewritten = relative
+        if fragment_marker:
+            rewritten += f"#{fragment}"
+        if wrapped:
+            rewritten = f"<{rewritten}>"
+        suffix = match.groupdict().get("suffix") or ""
+        return f"{match.group('prefix')}{rewritten}{suffix}"
+
+    text = INLINE_LINK.sub(replace, text)
+    return REFERENCE_LINK.sub(replace, text)
+
+
+def _copy(
+    src: Path,
+    dst: Path,
+    *,
+    project: str,
+    source_map: Mapping[Path, Path],
+) -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
-    proj = dst.parent.name
-    text = _clean(src.read_text(encoding="utf-8"), project=proj)
-    # In the hub tree every page sits flat inside <lang>/<project>/, so
-    # repo-relative links into docs/ or docs/zh/ lose those prefixes and
-    # README.md itself becomes index.md.
-    text = text.replace("](./docs/", "](").replace("](docs/", "](")
-    text = text.replace("](./zh/", "](").replace("](zh/", "](")
-    text = text.replace("](../README.md)", "](index.md)").replace("](README.md)", "](index.md)")
-    text = text.replace("](README.zh-CN.md)", "](../../zh/" + proj + "/index.md)")
-    if lang == "zh":
-        # Upward links from a zh page point at the English canonical copy.
-        text = re.sub(r"\]\((?:\.\./)+([\w.-]+\.md)", rf"](../../en/{proj}/\1", text)
-    else:
-        # Upward links from flattened docs/ pages target repo-root docs,
-        # which live flat in the same hub folder.
-        text = re.sub(r"\]\((?:\.\./)+([\w.-]+\.md)", r"](\1", text)
+    text = _clean(src.read_text(encoding="utf-8"), project=project)
+    text = _rewrite_local_links(text, src=src, dst=dst, source_map=source_map)
     dst.write_text(text, encoding="utf-8")
 
 
@@ -170,12 +204,27 @@ def sync() -> None:
                     continue
                 pairs.append((md, docs_dir / "zh" / rel, str(rel)))
 
+        source_map: dict[Path, Path] = {}
         for en_src, zh_src, rel_name in pairs:
-            is_readme = rel_name == "index.md"
-            _copy(en_src, OUT_EN / name / rel_name, is_readme=is_readme)
+            source_map[en_src.resolve()] = OUT_EN / name / rel_name
+            if zh_src is not None and zh_src.exists():
+                source_map[zh_src.resolve()] = OUT_ZH / name / rel_name
+
+        for en_src, zh_src, rel_name in pairs:
+            _copy(
+                en_src,
+                OUT_EN / name / rel_name,
+                project=name,
+                source_map=source_map,
+            )
             zh_dst = OUT_ZH / name / rel_name
             if zh_src is not None and zh_src.exists():
-                _copy(zh_src, zh_dst, is_readme=is_readme, lang="zh")
+                _copy(
+                    zh_src,
+                    zh_dst,
+                    project=name,
+                    source_map=source_map,
+                )
             else:
                 zh_dst.parent.mkdir(parents=True, exist_ok=True)
                 zh_dst.write_text(_zh_stub(f"{name}/{rel_name}"), encoding="utf-8")

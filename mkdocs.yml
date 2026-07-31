@@ -10,6 +10,7 @@ theme:
   favicon: assets/brand/avatar.svg
   language: en
   features:
+    - navigation.tabs
     - navigation.sections
     - navigation.top
     - navigation.indexes
@@ -28,6 +29,8 @@ theme:
         name: Light mode
 
 markdown_extensions:
+  - pymdownx.details
+
   - admonition
   - attr_list
   - md_in_html
@@ -38,106 +41,337 @@ markdown_extensions:
   - pymdownx.superfences
 
 nav:
-  - Home / 首页: index.md
-  - Learning Paths / 学习路线: https://system-in-miniature.github.io/#learning-paths
-  - Document Library / 文档库:
-      - English:
-          - MiniLucene:
-              - Overview: en/MiniLucene/index.md
-              - Behavior matrix: en/MiniLucene/behavior-matrix.md
-              - Final acceptance: en/MiniLucene/final-acceptance.md
-              - Hands-on CLI experiment: en/MiniLucene/labs-guide.md
-              - Lucene mapping: en/MiniLucene/lucene-mapping.md
-              - Phase 1 — Retrieval kernel: en/MiniLucene/phase1-retrieval-kernel.md
-              - Phase 2 — Storage & commit: en/MiniLucene/phase2-storage-commit.md
-              - Phase 3 — NRT & mutation: en/MiniLucene/phase3-nrt-mutation.md
-              - Segment format: en/MiniLucene/segment-format.md
-          - MiniQdrant:
-              - Overview: en/MiniQdrant/index.md
-              - Architecture: en/MiniQdrant/ARCHITECTURE.md
-              - Differences from Qdrant: en/MiniQdrant/DIFFERENCES_FROM_QDRANT.md
-              - Behavior matrix: en/MiniQdrant/behavior-matrix.md
-              - Qdrant mapping: en/MiniQdrant/qdrant-mapping.md
-              - Storage format: en/MiniQdrant/storage-format.md
-          - MiniPostgres:
-              - Overview: en/MiniPostgres/index.md
-              - Architecture: en/MiniPostgres/ARCHITECTURE.md
-              - Behavioral contract: en/MiniPostgres/BEHAVIORAL_CONTRACT.md
-              - Behavior matrix: en/MiniPostgres/BEHAVIOR_MATRIX.md
-              - Differences from PostgreSQL: en/MiniPostgres/DIFFERENCES_FROM_POSTGRESQL.md
-              - Labs: en/MiniPostgres/LABS.md
-              - Scope: en/MiniPostgres/SCOPE.md
-              - Tour: en/MiniPostgres/tour.md
-          - MiniMongoDB:
-              - Overview: en/MiniMongoDB/index.md
-              - Differences: en/MiniMongoDB/DIFFERENCES.md
-              - Mapping: en/MiniMongoDB/mapping.md
-          - MiniS3:
-              - Overview: en/MiniS3/index.md
-              - Differences: en/MiniS3/DIFFERENCES.md
-              - Mapping: en/MiniS3/mapping.md
-          - MiniRedis:
-              - Overview: en/MiniRedis/index.md
-              - Architecture: en/MiniRedis/architecture.md
-              - Behavior matrix: en/MiniRedis/behavior-matrix.md
+  - Home: index.md
+  - English:
+      - Document Library:
           - MiniKafka:
               - Overview: en/MiniKafka/index.md
-              - Behavior matrix: en/MiniKafka/behavior-matrix.md
-              - Kafka mapping: en/MiniKafka/kafka-mapping.md
+              - Tutorial:
+                  - Contents: en/MiniKafka/tutorial/index.md
+                  - 01 · Meet MiniKafka: en/MiniKafka/tutorial/01-getting-started.md
+                  - 02 · The Log: en/MiniKafka/tutorial/02-the-log.md
+                  - 03 · Retention and Compaction: en/MiniKafka/tutorial/03-retention-compaction.md
+                  - 04 · The Producer: en/MiniKafka/tutorial/04-producer.md
+                  - 05 · Replication Basics: en/MiniKafka/tutorial/05-replication-basics.md
+                  - 06 · ISR and Fencing: en/MiniKafka/tutorial/06-isr-and-fencing.md
+                  - 07 · Consumer Groups: en/MiniKafka/tutorial/07-consumer-groups.md
+                  - 08 · Transactions: en/MiniKafka/tutorial/08-transactions.md
+                  - 09 · Delivery Semantics: en/MiniKafka/tutorial/09-delivery-semantics.md
+                  - 10 · Protocol and Beyond: en/MiniKafka/tutorial/10-protocol-and-beyond.md
+              - Reference:
+                  - Architecture: en/MiniKafka/architecture.md
+                  - Behavior Matrix: en/MiniKafka/behavior-matrix.md
+                  - Kafka Mapping: en/MiniKafka/kafka-mapping.md
+                  - Labs Guide: en/MiniKafka/labs-guide.md
+          - MiniRedis:
+              - Overview: en/MiniRedis/index.md
+              - Tutorial:
+                  - Contents: en/MiniRedis/tutorial/index.md
+                  - 01 · Meet MiniRedis: en/MiniRedis/tutorial/01-getting-started.md
+                  - 02 · Life of a Command: en/MiniRedis/tutorial/02-life-of-a-command.md
+                  - 03 · Data Types: en/MiniRedis/tutorial/03-data-types.md
+                  - 04 · Expiration: en/MiniRedis/tutorial/04-expiration.md
+                  - 05 · Eviction: en/MiniRedis/tutorial/05-eviction.md
+                  - 06 · Persistence and AOF: en/MiniRedis/tutorial/06-persistence-aof.md
+                  - 07 · Rewrite and Snapshot: en/MiniRedis/tutorial/07-rewrite-snapshot.md
+                  - 08 · Replication: en/MiniRedis/tutorial/08-replication.md
+                  - 09 · Transactions and Blocking: en/MiniRedis/tutorial/09-transactions-blocking.md
+                  - 10 · Protocol: en/MiniRedis/tutorial/10-protocol.md
+              - Reference:
+                  - Architecture: en/MiniRedis/architecture.md
+                  - Behavior Matrix: en/MiniRedis/behavior-matrix.md
+                  - Labs Guide: en/MiniRedis/labs-guide.md
+                  - Redis Mapping: en/MiniRedis/redis-mapping.md
+          - MiniPostgres:
+              - Overview: en/MiniPostgres/index.md
+              - Tutorial:
+                  - Contents: en/MiniPostgres/tutorial/index.md
+                  - 01 · Getting Started: en/MiniPostgres/tutorial/01-getting-started.md
+                  - 02 · SQL Front End: en/MiniPostgres/tutorial/02-sql-frontend.md
+                  - 03 · Storage: en/MiniPostgres/tutorial/03-storage.md
+                  - 04 · MVCC: en/MiniPostgres/tutorial/04-mvcc.md
+                  - 05 · B+Tree: en/MiniPostgres/tutorial/05-btree.md
+                  - 06 · Planning: en/MiniPostgres/tutorial/06-planning.md
+                  - 07 · Execution: en/MiniPostgres/tutorial/07-execution.md
+                  - 08 · Isolation: en/MiniPostgres/tutorial/08-isolation.md
+                  - 09 · Locks and Deadlocks: en/MiniPostgres/tutorial/09-locks-deadlock.md
+                  - 10 · WAL and Recovery: en/MiniPostgres/tutorial/10-wal-recovery.md
+                  - 11 · VACUUM and HOT: en/MiniPostgres/tutorial/11-vacuum-hot.md
+                  - 12 · Testing Methodology: en/MiniPostgres/tutorial/12-testing-methodology.md
+              - Reference:
+                  - Architecture: en/MiniPostgres/ARCHITECTURE.md
+                  - Behavioral Contract: en/MiniPostgres/BEHAVIORAL_CONTRACT.md
+                  - Behavior Matrix: en/MiniPostgres/BEHAVIOR_MATRIX.md
+                  - Differences from PostgreSQL: en/MiniPostgres/DIFFERENCES_FROM_POSTGRESQL.md
+                  - Labs: en/MiniPostgres/LABS.md
+                  - Scope: en/MiniPostgres/SCOPE.md
+                  - PostgreSQL Mapping: en/MiniPostgres/postgresql-mapping.md
+                  - Tour: en/MiniPostgres/tour.md
+          - MiniQdrant:
+              - Overview: en/MiniQdrant/index.md
+              - Tutorial:
+                  - Contents: en/MiniQdrant/tutorial/index.md
+                  - 01 · Getting Started: en/MiniQdrant/tutorial/01-getting-started.md
+                  - 02 · Points and Payload: en/MiniQdrant/tutorial/02-points-payload.md
+                  - 03 · WAL and Manifest: en/MiniQdrant/tutorial/03-wal-manifest.md
+                  - 04 · Segments: en/MiniQdrant/tutorial/04-segments.md
+                  - 05 · HNSW: en/MiniQdrant/tutorial/05-hnsw.md
+                  - 06 · Filtering: en/MiniQdrant/tutorial/06-filtering.md
+                  - 07 · Planner: en/MiniQdrant/tutorial/07-planner.md
+                  - 08 · Quantization: en/MiniQdrant/tutorial/08-quantization.md
+                  - 09 · Optimizer: en/MiniQdrant/tutorial/09-optimizer.md
+                  - 10 · Snapshots and Methodology: en/MiniQdrant/tutorial/10-snapshots-methodology.md
+              - Reference:
+                  - Architecture: en/MiniQdrant/ARCHITECTURE.md
+                  - Differences from Qdrant: en/MiniQdrant/DIFFERENCES_FROM_QDRANT.md
+                  - Behavior Matrix: en/MiniQdrant/behavior-matrix.md
+                  - Labs Guide: en/MiniQdrant/labs-guide.md
+                  - Qdrant Mapping: en/MiniQdrant/qdrant-mapping.md
+                  - Storage Format: en/MiniQdrant/storage-format.md
+          - MiniLucene:
+              - Overview: en/MiniLucene/index.md
+              - Tutorial:
+                  - Contents: en/MiniLucene/tutorial/index.md
+                  - 01 · Getting Started: en/MiniLucene/tutorial/01-getting-started.md
+                  - 02 · Analysis: en/MiniLucene/tutorial/02-analysis.md
+                  - 03 · Inverted Index: en/MiniLucene/tutorial/03-inverted-index.md
+                  - 04 · Codec: en/MiniLucene/tutorial/04-codec.md
+                  - 05 · Segments and NRT: en/MiniLucene/tutorial/05-segments-nrt.md
+                  - 06 · Deletes and Updates: en/MiniLucene/tutorial/06-deletes-updates.md
+                  - 07 · Commit Atomicity: en/MiniLucene/tutorial/07-commit-atomicity.md
+                  - 08 · Scoring: en/MiniLucene/tutorial/08-scoring.md
+                  - 09 · Query Language: en/MiniLucene/tutorial/09-query-language.md
+                  - 10 · Merge and Beyond: en/MiniLucene/tutorial/10-merge-and-beyond.md
+                  - 11 · DAAT: en/MiniLucene/tutorial/11-daat.md
+              - Reference:
+                  - Behavior Matrix: en/MiniLucene/behavior-matrix.md
+                  - Final Acceptance: en/MiniLucene/final-acceptance.md
+                  - Labs Guide: en/MiniLucene/labs-guide.md
+                  - Lucene Mapping: en/MiniLucene/lucene-mapping.md
+                  - Retrieval Kernel: en/MiniLucene/phase1-retrieval-kernel.md
+                  - Storage and Commit: en/MiniLucene/phase2-storage-commit.md
+                  - NRT Mutation and Merge: en/MiniLucene/phase3-nrt-mutation.md
+                  - Segment Format: en/MiniLucene/segment-format.md
           - MiniDist:
               - Overview: en/MiniDist/index.md
-              - Experiments: en/MiniDist/experiments.md
-              - Hands-on protocol experiment: en/MiniDist/labs-guide.md
-              - Mapping: en/MiniDist/mapping.md
-      - 中文:
-          - MiniLucene:
-              - 概览: zh/MiniLucene/index.md
-              - 行为矩阵: zh/MiniLucene/behavior-matrix.md
-              - 最终验收: zh/MiniLucene/final-acceptance.md
-              - CLI 动手实验: zh/MiniLucene/labs-guide.md
-              - Lucene 映射: zh/MiniLucene/lucene-mapping.md
-              - 第一阶段 — 检索内核: zh/MiniLucene/phase1-retrieval-kernel.md
-              - 第二阶段 — 存储与提交: zh/MiniLucene/phase2-storage-commit.md
-              - 第三阶段 — NRT 与变更: zh/MiniLucene/phase3-nrt-mutation.md
-              - 段格式: zh/MiniLucene/segment-format.md
-          - MiniQdrant:
-              - 概览: zh/MiniQdrant/index.md
-              - 架构: zh/MiniQdrant/ARCHITECTURE.md
-              - 与 Qdrant 的差异: zh/MiniQdrant/DIFFERENCES_FROM_QDRANT.md
-              - 行为矩阵: zh/MiniQdrant/behavior-matrix.md
-              - Qdrant 映射: zh/MiniQdrant/qdrant-mapping.md
-              - 存储格式: zh/MiniQdrant/storage-format.md
-          - MiniPostgres:
-              - 概览: zh/MiniPostgres/index.md
-              - 架构: zh/MiniPostgres/ARCHITECTURE.md
-              - 行为契约: zh/MiniPostgres/BEHAVIORAL_CONTRACT.md
-              - 行为矩阵: zh/MiniPostgres/BEHAVIOR_MATRIX.md
-              - 与 PostgreSQL 的差异: zh/MiniPostgres/DIFFERENCES_FROM_POSTGRESQL.md
-              - 实验: zh/MiniPostgres/LABS.md
-              - 范围: zh/MiniPostgres/SCOPE.md
-              - 导览: zh/MiniPostgres/tour.md
-          - MiniMongoDB:
-              - 概览: zh/MiniMongoDB/index.md
-              - 差异: zh/MiniMongoDB/DIFFERENCES.md
-              - 映射: zh/MiniMongoDB/mapping.md
+              - Tutorial:
+                  - 01 · Why a Protocol Spectrum?: en/MiniDist/tutorial/01-why-a-spectrum.md
+                  - 02 · Deterministic Simulation: en/MiniDist/tutorial/02-deterministic-simulation.md
+                  - 03 · Replication Group: en/MiniDist/tutorial/03-replication-group.md
+                  - 04 · Asynchronous Primary: en/MiniDist/tutorial/04-async-primary.md
+                  - 05 · Failover and Fencing: en/MiniDist/tutorial/05-failover-fencing.md
+                  - 06 · Raft Election: en/MiniDist/tutorial/06-raft-election.md
+                  - 07 · Raft Replication: en/MiniDist/tutorial/07-raft-replication.md
+                  - 08 · Experiments: en/MiniDist/tutorial/08-experiments.md
+                  - 09 · WAL Shipping: en/MiniDist/tutorial/09-wal-shipping.md
+                  - 10 · ISR: en/MiniDist/tutorial/10-isr.md
+              - Reference:
+                  - Experiments: en/MiniDist/experiments.md
+                  - Labs Guide: en/MiniDist/labs-guide.md
+                  - Mapping: en/MiniDist/mapping.md
           - MiniS3:
-              - 概览: zh/MiniS3/index.md
-              - 差异: zh/MiniS3/DIFFERENCES.md
-              - 映射: zh/MiniS3/mapping.md
-          - MiniRedis:
-              - 概览: zh/MiniRedis/index.md
-              - 架构: zh/MiniRedis/architecture.md
-              - 行为矩阵: zh/MiniRedis/behavior-matrix.md
+              - Overview: en/MiniS3/index.md
+              - Tutorial:
+                  - Contents: en/MiniS3/tutorial/index.md
+                  - 01 · Getting Started: en/MiniS3/tutorial/01-getting-started.md
+                  - 02 · Objects and ETags: en/MiniS3/tutorial/02-objects-etag.md
+                  - 03 · Versioning: en/MiniS3/tutorial/03-versioning.md
+                  - 04 · Listing: en/MiniS3/tutorial/04-listing.md
+                  - 05 · Crash Atomicity: en/MiniS3/tutorial/05-crash-atomicity.md
+                  - 06 · Multipart Upload: en/MiniS3/tutorial/06-multipart.md
+                  - 07 · Conditional Requests: en/MiniS3/tutorial/07-conditional.md
+                  - 08 · Lifecycle: en/MiniS3/tutorial/08-lifecycle.md
+                  - 09 · Methodology: en/MiniS3/tutorial/09-methodology.md
+              - Reference:
+                  - Differences from S3: en/MiniS3/DIFFERENCES.md
+                  - Labs Guide: en/MiniS3/labs-guide.md
+                  - Multipart ETag Lab: en/MiniS3/labs/multipart-etag.md
+                  - Conditional CAS Lab: en/MiniS3/labs/conditional-cas.md
+                  - Mapping: en/MiniS3/mapping.md
+          - MiniMongoDB:
+              - Overview: en/MiniMongoDB/index.md
+              - Tutorial:
+                  - 01 · Getting Started: en/MiniMongoDB/tutorial/01-getting-started.md
+                  - 02 · Document Model: en/MiniMongoDB/tutorial/02-document-model.md
+                  - 03 · Queries: en/MiniMongoDB/tutorial/03-queries.md
+                  - 04 · Updates: en/MiniMongoDB/tutorial/04-updates.md
+                  - 05 · Durability: en/MiniMongoDB/tutorial/05-durability.md
+                  - 06 · Oplog: en/MiniMongoDB/tutorial/06-oplog.md
+                  - 07 · Secondary Indexes: en/MiniMongoDB/tutorial/07-secondary-indexes.md
+                  - 08 · Planner and Explain: en/MiniMongoDB/tutorial/08-planner-explain.md
+                  - 09 · Aggregation: en/MiniMongoDB/tutorial/09-aggregation.md
+                  - 10 · Relational vs Document: en/MiniMongoDB/tutorial/10-relational-vs-document.md
+              - Reference:
+                  - Differences from MongoDB: en/MiniMongoDB/DIFFERENCES.md
+                  - Labs Guide: en/MiniMongoDB/labs-guide.md
+                  - Mapping: en/MiniMongoDB/mapping.md
+      - Learning Paths: https://system-in-miniature.github.io/#learning-paths
+      - About: https://system-in-miniature.github.io/#about
+  - 简体中文:
+      - 文档库:
           - MiniKafka:
               - 概览: zh/MiniKafka/index.md
-              - 行为矩阵: zh/MiniKafka/behavior-matrix.md
-              - Kafka 映射: zh/MiniKafka/kafka-mapping.md
+              - 教程:
+                  - 目录: zh/MiniKafka/tutorial/index.md
+                  - 01 · 认识 MiniKafka: zh/MiniKafka/tutorial/01-getting-started.md
+                  - 02 · 日志: zh/MiniKafka/tutorial/02-the-log.md
+                  - 03 · 保留与压实: zh/MiniKafka/tutorial/03-retention-compaction.md
+                  - 04 · 生产者: zh/MiniKafka/tutorial/04-producer.md
+                  - 05 · 复制基础: zh/MiniKafka/tutorial/05-replication-basics.md
+                  - 06 · ISR 与栅栏: zh/MiniKafka/tutorial/06-isr-and-fencing.md
+                  - 07 · 消费组: zh/MiniKafka/tutorial/07-consumer-groups.md
+                  - 08 · 事务: zh/MiniKafka/tutorial/08-transactions.md
+                  - 09 · 投递语义: zh/MiniKafka/tutorial/09-delivery-semantics.md
+                  - 10 · 协议与方法论: zh/MiniKafka/tutorial/10-protocol-and-beyond.md
+              - 参考资料:
+                  - 架构: zh/MiniKafka/architecture.md
+                  - 行为矩阵: zh/MiniKafka/behavior-matrix.md
+                  - Kafka 映射: zh/MiniKafka/kafka-mapping.md
+                  - 实验指南: zh/MiniKafka/labs-guide.md
+          - MiniRedis:
+              - 概览: zh/MiniRedis/index.md
+              - 教程:
+                  - 目录: zh/MiniRedis/tutorial/index.md
+                  - 01 · 认识 MiniRedis: zh/MiniRedis/tutorial/01-getting-started.md
+                  - 02 · 一条命令的一生: zh/MiniRedis/tutorial/02-life-of-a-command.md
+                  - 03 · 数据类型: zh/MiniRedis/tutorial/03-data-types.md
+                  - 04 · 过期: zh/MiniRedis/tutorial/04-expiration.md
+                  - 05 · 淘汰: zh/MiniRedis/tutorial/05-eviction.md
+                  - 06 · AOF 持久化: zh/MiniRedis/tutorial/06-persistence-aof.md
+                  - 07 · 重写与快照: zh/MiniRedis/tutorial/07-rewrite-snapshot.md
+                  - 08 · 复制: zh/MiniRedis/tutorial/08-replication.md
+                  - 09 · 事务与阻塞: zh/MiniRedis/tutorial/09-transactions-blocking.md
+                  - 10 · 协议: zh/MiniRedis/tutorial/10-protocol.md
+              - 参考资料:
+                  - 架构: zh/MiniRedis/architecture.md
+                  - 行为矩阵: zh/MiniRedis/behavior-matrix.md
+                  - 实验指南: zh/MiniRedis/labs-guide.md
+                  - Redis 映射: zh/MiniRedis/redis-mapping.md
+          - MiniPostgres:
+              - 概览: zh/MiniPostgres/index.md
+              - 教程:
+                  - 目录: zh/MiniPostgres/tutorial/index.md
+                  - 01 · 快速开始: zh/MiniPostgres/tutorial/01-getting-started.md
+                  - 02 · SQL 前端: zh/MiniPostgres/tutorial/02-sql-frontend.md
+                  - 03 · 存储: zh/MiniPostgres/tutorial/03-storage.md
+                  - 04 · MVCC: zh/MiniPostgres/tutorial/04-mvcc.md
+                  - 05 · B+Tree: zh/MiniPostgres/tutorial/05-btree.md
+                  - 06 · 规划: zh/MiniPostgres/tutorial/06-planning.md
+                  - 07 · 执行: zh/MiniPostgres/tutorial/07-execution.md
+                  - 08 · 隔离: zh/MiniPostgres/tutorial/08-isolation.md
+                  - 09 · 锁与死锁: zh/MiniPostgres/tutorial/09-locks-deadlock.md
+                  - 10 · WAL 与恢复: zh/MiniPostgres/tutorial/10-wal-recovery.md
+                  - 11 · VACUUM 与 HOT: zh/MiniPostgres/tutorial/11-vacuum-hot.md
+                  - 12 · 测试方法论: zh/MiniPostgres/tutorial/12-testing-methodology.md
+              - 参考资料:
+                  - 架构: zh/MiniPostgres/ARCHITECTURE.md
+                  - 行为契约: zh/MiniPostgres/BEHAVIORAL_CONTRACT.md
+                  - 行为矩阵: zh/MiniPostgres/BEHAVIOR_MATRIX.md
+                  - 与 PostgreSQL 的差异: zh/MiniPostgres/DIFFERENCES_FROM_POSTGRESQL.md
+                  - 实验: zh/MiniPostgres/LABS.md
+                  - 范围: zh/MiniPostgres/SCOPE.md
+                  - PostgreSQL 映射: zh/MiniPostgres/postgresql-mapping.md
+                  - 导览: zh/MiniPostgres/tour.md
+          - MiniQdrant:
+              - 概览: zh/MiniQdrant/index.md
+              - 教程:
+                  - 目录: zh/MiniQdrant/tutorial/index.md
+                  - 01 · 快速开始: zh/MiniQdrant/tutorial/01-getting-started.md
+                  - 02 · 点与负载: zh/MiniQdrant/tutorial/02-points-payload.md
+                  - 03 · WAL 与清单: zh/MiniQdrant/tutorial/03-wal-manifest.md
+                  - 04 · 段: zh/MiniQdrant/tutorial/04-segments.md
+                  - 05 · HNSW: zh/MiniQdrant/tutorial/05-hnsw.md
+                  - 06 · 过滤: zh/MiniQdrant/tutorial/06-filtering.md
+                  - 07 · 规划器: zh/MiniQdrant/tutorial/07-planner.md
+                  - 08 · 量化: zh/MiniQdrant/tutorial/08-quantization.md
+                  - 09 · 优化器: zh/MiniQdrant/tutorial/09-optimizer.md
+                  - 10 · 快照与方法论: zh/MiniQdrant/tutorial/10-snapshots-methodology.md
+              - 参考资料:
+                  - 架构: zh/MiniQdrant/ARCHITECTURE.md
+                  - 与 Qdrant 的差异: zh/MiniQdrant/DIFFERENCES_FROM_QDRANT.md
+                  - 行为矩阵: zh/MiniQdrant/behavior-matrix.md
+                  - 实验指南: zh/MiniQdrant/labs-guide.md
+                  - Qdrant 映射: zh/MiniQdrant/qdrant-mapping.md
+                  - 存储格式: zh/MiniQdrant/storage-format.md
+          - MiniLucene:
+              - 概览: zh/MiniLucene/index.md
+              - 教程:
+                  - 目录: zh/MiniLucene/tutorial/index.md
+                  - 01 · 快速开始: zh/MiniLucene/tutorial/01-getting-started.md
+                  - 02 · 分析链: zh/MiniLucene/tutorial/02-analysis.md
+                  - 03 · 倒排索引: zh/MiniLucene/tutorial/03-inverted-index.md
+                  - 04 · 编解码: zh/MiniLucene/tutorial/04-codec.md
+                  - 05 · 段与 NRT: zh/MiniLucene/tutorial/05-segments-nrt.md
+                  - 06 · 删除与更新: zh/MiniLucene/tutorial/06-deletes-updates.md
+                  - 07 · 提交原子性: zh/MiniLucene/tutorial/07-commit-atomicity.md
+                  - 08 · 打分: zh/MiniLucene/tutorial/08-scoring.md
+                  - 09 · 查询语言: zh/MiniLucene/tutorial/09-query-language.md
+                  - 10 · 合并与方法论: zh/MiniLucene/tutorial/10-merge-and-beyond.md
+                  - 11 · DAAT: zh/MiniLucene/tutorial/11-daat.md
+              - 参考资料:
+                  - 行为矩阵: zh/MiniLucene/behavior-matrix.md
+                  - 最终验收: zh/MiniLucene/final-acceptance.md
+                  - 实验指南: zh/MiniLucene/labs-guide.md
+                  - Lucene 映射: zh/MiniLucene/lucene-mapping.md
+                  - 检索内核: zh/MiniLucene/phase1-retrieval-kernel.md
+                  - 存储与提交: zh/MiniLucene/phase2-storage-commit.md
+                  - NRT 变更与合并: zh/MiniLucene/phase3-nrt-mutation.md
+                  - 段格式: zh/MiniLucene/segment-format.md
           - MiniDist:
               - 概览: zh/MiniDist/index.md
-              - 实验: zh/MiniDist/experiments.md
-              - 协议动手实验: zh/MiniDist/labs-guide.md
-              - 映射: zh/MiniDist/mapping.md
-  - About / 关于: https://system-in-miniature.github.io/#about
+              - 教程:
+                  - 01 · 为什么是协议谱系: zh/MiniDist/tutorial/01-why-a-spectrum.md
+                  - 02 · 确定性仿真: zh/MiniDist/tutorial/02-deterministic-simulation.md
+                  - 03 · 复制组: zh/MiniDist/tutorial/03-replication-group.md
+                  - 04 · 异步主从: zh/MiniDist/tutorial/04-async-primary.md
+                  - 05 · 换主与栅栏: zh/MiniDist/tutorial/05-failover-fencing.md
+                  - 06 · Raft 选举: zh/MiniDist/tutorial/06-raft-election.md
+                  - 07 · Raft 复制: zh/MiniDist/tutorial/07-raft-replication.md
+                  - 08 · 实验: zh/MiniDist/tutorial/08-experiments.md
+                  - 09 · WAL 运输: zh/MiniDist/tutorial/09-wal-shipping.md
+                  - 10 · ISR: zh/MiniDist/tutorial/10-isr.md
+              - 参考资料:
+                  - 实验: zh/MiniDist/experiments.md
+                  - 实验指南: zh/MiniDist/labs-guide.md
+                  - 映射: zh/MiniDist/mapping.md
+          - MiniS3:
+              - 概览: zh/MiniS3/index.md
+              - 教程:
+                  - 目录: zh/MiniS3/tutorial/index.md
+                  - 01 · 快速开始: zh/MiniS3/tutorial/01-getting-started.md
+                  - 02 · 对象与 ETag: zh/MiniS3/tutorial/02-objects-etag.md
+                  - 03 · 版本化: zh/MiniS3/tutorial/03-versioning.md
+                  - 04 · 列举: zh/MiniS3/tutorial/04-listing.md
+                  - 05 · 崩溃原子性: zh/MiniS3/tutorial/05-crash-atomicity.md
+                  - 06 · 分片上传: zh/MiniS3/tutorial/06-multipart.md
+                  - 07 · 条件请求: zh/MiniS3/tutorial/07-conditional.md
+                  - 08 · 生命周期: zh/MiniS3/tutorial/08-lifecycle.md
+                  - 09 · 方法论: zh/MiniS3/tutorial/09-methodology.md
+              - 参考资料:
+                  - 与 S3 的差异: zh/MiniS3/DIFFERENCES.md
+                  - 实验指南: zh/MiniS3/labs-guide.md
+                  - Multipart ETag 实验: zh/MiniS3/labs/multipart-etag.md
+                  - 条件 CAS 实验: zh/MiniS3/labs/conditional-cas.md
+                  - 映射: zh/MiniS3/mapping.md
+          - MiniMongoDB:
+              - 概览: zh/MiniMongoDB/index.md
+              - 教程:
+                  - 01 · 快速开始: zh/MiniMongoDB/tutorial/01-getting-started.md
+                  - 02 · 文档模型: zh/MiniMongoDB/tutorial/02-document-model.md
+                  - 03 · 查询: zh/MiniMongoDB/tutorial/03-queries.md
+                  - 04 · 更新: zh/MiniMongoDB/tutorial/04-updates.md
+                  - 05 · 持久性: zh/MiniMongoDB/tutorial/05-durability.md
+                  - 06 · Oplog: zh/MiniMongoDB/tutorial/06-oplog.md
+                  - 07 · 二级索引: zh/MiniMongoDB/tutorial/07-secondary-indexes.md
+                  - 08 · 规划与 Explain: zh/MiniMongoDB/tutorial/08-planner-explain.md
+                  - 09 · 聚合: zh/MiniMongoDB/tutorial/09-aggregation.md
+                  - 10 · 关系与文档模型: zh/MiniMongoDB/tutorial/10-relational-vs-document.md
+              - 参考资料:
+                  - 与 MongoDB 的差异: zh/MiniMongoDB/DIFFERENCES.md
+                  - 实验指南: zh/MiniMongoDB/labs-guide.md
+                  - 映射: zh/MiniMongoDB/mapping.md
+      - 学习路线: https://system-in-miniature.github.io/#learning-paths
+      - 关于: https://system-in-miniature.github.io/#about
 
 plugins:
   - search:
